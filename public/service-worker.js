@@ -82,7 +82,7 @@ if (evt.request.url.includes('/forecast/')) {
       caches.open(DATA_CACHE_NAME).then((cache) => {
         return fetch(evt.request)
             .then((response) => {
-              // If the response was good, clone it and store it in the cache.
+  // If the response was good, clone it and store it in the cache.
               if (response.status === 200) {
                 cache.put(evt.request.url, response.clone());
               }
@@ -92,17 +92,6 @@ if (evt.request.url.includes('/forecast/')) {
               return cache.match(evt.request);
             });
       }));
-  return;
-}
-evt.respondWith(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.match(evt.request)
-          .then((response) => {
-            return response || fetch(evt.request);
-          });
-    })
-);
-  // Not a page navigation, bail.
   return;
 }
 evt.respondWith(
